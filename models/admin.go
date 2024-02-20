@@ -231,7 +231,7 @@ var Admin = `<html lang="zh-cn">
                 contentType: "application/json",
                 data: JSON.stringify(obj.data),
                 dataType: 'json',
-                timeout: 3000,
+                timeout: 10000,
                 cache: false,
                 error: function() {
                     table.reload('accounts');
