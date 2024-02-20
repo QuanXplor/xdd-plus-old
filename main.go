@@ -64,6 +64,7 @@ func main() {
 	web.Router("/api/getUserInfo", &controllers.LoginController{}, "get:GetUserInfo")
 	web.Router("/api/account", &controllers.AccountController{}, "get:List")
 	web.Router("/api/account", &controllers.AccountController{}, "post:CreateOrUpdate")
+	web.Router("/api/account/push", &controllers.AccountController{}, "post:Push")
 	web.Router("/admin", &controllers.AccountController{}, "get:Admin")
 	web.Router("/admin", &controllers.AccountController{}, "post:Admin")
 	web.Router("/userCenter", &controllers.AccountController{}, "get:UserCenter")

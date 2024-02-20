@@ -10,6 +10,9 @@ var Admin = `<html lang="zh-cn">
         <title>账号管理</title>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/cdle/static/layui/css/layui.css">
         <script src="https://cdn.jsdelivr.net/gh/cdle/static/layui/layui.all.js"></script>
+		<script type="text/html" id="bar">
+			<a class="layui-btn layui-btn-xs" lay-event="push">推送</a>
+		</script>
     </head>
     
     <body>
@@ -172,6 +175,12 @@ var Admin = `<html lang="zh-cn">
                         edit: 'text',
                         width: 120,
                         align: 'center',
+                    },{
+                        field: 'Push',
+                        title: '操作',
+                        width: 120,
+                        align: 'center',
+						toolbar: '#bar'
                     }
                 ]
             ]
@@ -212,6 +221,27 @@ var Admin = `<html lang="zh-cn">
               break;
             };
           });
+		table.on('tool(accounts)', function(obj){ //注：tool 是工具条事件名，test 是 table 原始容器的属性 lay-filter="对应的值"
+            var data = obj.data //获得当前行数据
+                ,layEvent = obj.event; //获得 lay-event 对应的值
+            if(layEvent === 'push'){
+                layui.$.ajax({
+                url: '/api/account/push',
+                type: 'POST',
+                contentType: "application/json",
+                data: JSON.stringify(obj.data),
+                dataType: 'json',
+                timeout: 3000,
+                cache: false,
+                error: function() {
+                    table.reload('accounts');
+                }, //错误执行方法
+                success: function(data) {
+                    layer.msg(data["msg"])
+                },
+            	});
+            } 
+        });
     </script>
     
     

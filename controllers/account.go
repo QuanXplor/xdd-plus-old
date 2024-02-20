@@ -1,7 +1,9 @@
 package controllers
 
 import (
+	"encoding/json"
 	"github.com/zhuanke8/xdd-plus/models"
+	"net/http"
 )
 
 type AccountController struct {
@@ -78,4 +80,22 @@ func (c *AccountController) Admin() {
 
 func (c *AccountController) UserCenter() {
 	c.Ctx.WriteString(models.UserCenter)
+}
+
+func (c *AccountController) Push() {
+	ps := &models.JdCookie{}
+	c.ResponseError(json.Unmarshal(c.Ctx.Input.CopyBody(10000000), ps), http.StatusBadRequest)
+	if c.PtPin == "" {
+		c.Response(nil, "请传送pin")
+	} else {
+		info := models.PushInfo(ps.PtPin)
+		switch info {
+		case 0:
+			c.Response(nil, "推送发生错误")
+		case 1:
+			c.Response(nil, "推送完毕")
+		case 3:
+			c.Response(nil, "该用户不存在")
+		}
+	}
 }

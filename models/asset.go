@@ -73,6 +73,33 @@ func DailyAssetsPush() {
 		}
 	}
 }
+
+func PushInfo(pin string) int {
+	ck, err := GetJdCookie(pin)
+	if err != nil {
+		logs.Error(err)
+		return 0
+	}
+	if ck != nil && (ck.QQ != 0 && Config.QQID != 0 && SendQQ != nil) || ck.PushPlus != "" || Config.Mail.Sender != "" {
+		msg := ck.Query()
+		if ck.QQ != 0 && Config.QQID != 0 && SendQQ != nil && Config.QQpush {
+			SendQQ(int64(ck.QQ), msg)
+		}
+		if ck.PushPlus != "" {
+			pushPlus(ck.PushPlus, msg)
+		}
+		if Config.Mail.Sender != "" && ck.MailReceiver != "" {
+			mail := Config.Mail
+			err := SendToMail(mail, ck.MailReceiver, "系统监控", msg)
+			if err != nil {
+				logs.Error(err)
+			}
+		}
+		return 1
+	}
+	return 3
+}
+
 func (ck *JdCookie) Query1() string {
 	name := "jd_bean_change_new.js"
 	envs := []Env{{Name: "pins", Value: "&" + ck.PtPin}}
