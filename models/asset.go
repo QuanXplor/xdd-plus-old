@@ -91,7 +91,7 @@ func (ck *JdCookie) Query1() string {
 
 func (ck *JdCookie) Query() string {
 	msgs := []string{
-		fmt.Sprintf("京东用户名：%s", ck.PtPin),
+		fmt.Sprintf("京东用户名：%s", ck.Nickname),
 	}
 	if ck.Note != "" {
 		msgs = append(msgs, fmt.Sprintf("账号备注：%s", ck.Note))
