@@ -110,6 +110,7 @@ type JdCookie struct {
 	Hack         string `gorm:"column:Hack"  validate:"oneof=true false"`
 	UserLevel    string `gorm:"column:UserLevel"`
 	LevelName    string `gorm:"column:LevelName"`
+	MailReceiver string `gorm:"column:MailReceiver"`
 }
 
 type JdCookiePool struct {

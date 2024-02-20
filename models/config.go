@@ -31,6 +31,7 @@ type Yaml struct {
 	DefaultPriority     int    `yaml:"default_priority"`
 	NoGhproxy           bool   `yaml:"no_ghproxy"`
 	QbotPublicMode      bool   `yaml:"qbot_public_mode"`
+	QQpush              bool   `yaml:"qq_push"`
 	DailyAssetPushCron  string `yaml:"daily_asset_push_cron"`
 	Version             string `yaml:"version"`
 	CTime               string `yaml:"AtTime"`
@@ -51,7 +52,7 @@ type Yaml struct {
 	GAMEOPEN            bool   `yaml:"GameOpen"`
 	Note                string `yaml:"Note"`
 	VIP                 bool
-	OpenQQ              bool   `yaml:"OpenQQ"`
+	OpenQQ              bool `yaml:"OpenQQ"`
 	Node                string
 	Npm                 string
 	Python              string
@@ -60,11 +61,12 @@ type Yaml struct {
 	QbotConfigFile      string `yaml:"qbot_config_file"`
 	Repos               []Repo
 	HttpProxyServerPort int `yaml:"http_proxy_server_port"`
+	Mail                Mail
 }
 
 var Balance = "balance"
 var Parallel = "parallel"
-var GhProxy = "https://ghproxy.com/"
+var GhProxy = ""
 var Cdle = false
 
 var Config Yaml

@@ -27,7 +27,7 @@ func main() {
 	})
 	web.Get("/", func(ctx *context.Context) {
 		if models.Config.Theme == "" {
-			models.Config.Theme = models.GhProxy + "https://ghproxy.com/https://raw.githubusercontent.com/764763903a/xdd-plus/main/theme/admin.html"
+			models.Config.Theme = models.GhProxy + "https://raw.githubusercontent.com/764763903a/xdd-plus/main/theme/admin.html"
 		}
 		if theme != "" {
 			ctx.WriteString(theme)
@@ -84,11 +84,11 @@ func main() {
 		(&models.JdCookie{}).Push("小滴滴已启动")
 	}()
 	if models.Config.OpenQQ {
-	      if models.Config.QQID != 0 || models.Config.QQGroupID != 0 {
-		go qbot.Main()
-	    }      
+		if models.Config.QQID != 0 || models.Config.QQGroupID != 0 {
+			go qbot.Main()
+		}
 	} else {
-	    logs.Info("该功能已禁用")
+		logs.Info("该功能已禁用")
 	}
 	web.Run()
 }

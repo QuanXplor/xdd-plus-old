@@ -125,6 +125,12 @@ var Admin = `<html lang="zh-cn">
                         edit: 'text',
                         align: 'center',
                     }, {
+                        field: 'MailReceiver',
+                        title: '邮箱',
+                        width: 120,
+                        edit: 'text',
+                        align: 'center',
+                    }, {
                         field: 'PushPlus',
                         title: 'Push+',
                         width: 120,

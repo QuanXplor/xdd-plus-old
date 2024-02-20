@@ -239,7 +239,7 @@ source /etc/profile
 第六步：检查go安装
 go env
 第七步：拉xdd-plus的库
-cd ~ && git clone https://ghproxy.com/https://github.com/764763903a/xdd-plus.git
+cd ~ && git clone https://github.com/764763903a/xdd-plus.git
 第八步：编译xdd-plus
 cd /root/xdd-plus && go build
 

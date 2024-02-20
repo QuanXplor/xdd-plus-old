@@ -29,7 +29,7 @@ return reply(
           `语录` => `https://api.ixiaowai.cn/ylapi/index.php`
           `舔狗` => `https://api.ixiaowai.cn/tgrj/index.php`
 	  `.*一言.*`=>`https://api.ixiaowai.cn/ylapi/index.php`
-          `说明`=>`https://ghproxy.com/https://raw.githubusercontent.com/U188/JDC/master/sm.jpg`
+          `说明`=>`https://raw.githubusercontent.com/U188/JDC/master/sm.jpg`
           `公告` => `加robot为好友，发送抓到的CK绑定QQ后输入"查询"`
           `教程` => `手机端Alook浏览器获取Cookie教程“https://docs.qq.com/doc/DTFhQUGlhSVlZckRV” PC端获取Cookie教程“https://shimo.im/docs/YcdghjYdKY9yPDK6”`
         `菜单` => `

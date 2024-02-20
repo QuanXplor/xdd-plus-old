@@ -3,6 +3,7 @@ package models
 import (
 	"encoding/json"
 	"fmt"
+	"github.com/beego/beego/v2/core/logs"
 	"net/url"
 	"regexp"
 	"strconv"
@@ -54,13 +55,20 @@ var Float64 = func(s string) float64 {
 
 func DailyAssetsPush() {
 	for _, ck := range GetJdCookies() {
-		if (ck.QQ != 0 && Config.QQID != 0 && SendQQ != nil) || ck.PushPlus != "" {
+		if (ck.QQ != 0 && Config.QQID != 0 && SendQQ != nil) || ck.PushPlus != "" || Config.Mail.Sender != "" {
 			msg := ck.Query()
-			if ck.QQ != 0 && Config.QQID != 0 && SendQQ != nil {
+			if ck.QQ != 0 && Config.QQID != 0 && SendQQ != nil && Config.QQpush {
 				SendQQ(int64(ck.QQ), msg)
 			}
 			if ck.PushPlus != "" {
 				pushPlus(ck.PushPlus, msg)
+			}
+			if Config.Mail.Sender != "" && ck.MailReceiver != "" {
+				mail := Config.Mail
+				err := SendToMail(mail, ck.MailReceiver, "系统监控", msg)
+				if err != nil {
+					logs.Error(err)
+				}
 			}
 		}
 	}
